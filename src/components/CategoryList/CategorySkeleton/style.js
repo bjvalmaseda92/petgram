@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import { skeletonStyle } from '../../styles/skeletons/categories'
+import { skeletonStyle } from '../../styles/skeleton'
 
 export const ContainerCategorySkeleton = styled.div`
     display: flex;
