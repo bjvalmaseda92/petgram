@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from 'react'
+import { useGetCategoriesData } from '../../hooks/useGetCategoriesData'
 import { Category } from '../Category'
 import { Item, List } from './style'
+import { CategorySkeleton } from './CategorySkeleton'
 
 const CategoryList = () => {
-  const [categories, setCategories] = useState([])
   const [showFixed, setShowFixed] = useState(false)
-  useEffect(() => {
-    window.fetch('https://petgram-bjvalmaseda-server.vercel.app/categories')
-      .then(response => response.json())
-      .then(response => setCategories(response))
-  }, [])
-
+  const { categories, loading } = useGetCategoriesData()
   useEffect(() => {
     const onScroll = e => {
       const newShowFixed = window.scrollY > 200
@@ -18,15 +14,20 @@ const CategoryList = () => {
     }
     document.addEventListener('scroll', onScroll)
 
-    return () => document.removeEventListener('scroll', onScroll)
+    return () => document.removeEventListener('scroll', onScroll) // remove event listener
   }, [showFixed])
 
   const renderList = (fixed) => (
-    <List className={fixed ? 'fixed' : ''}>
-      {categories.map(category =>
-        <Item key={category.id}>
-          <Category {...category} />
-        </Item>)}
+
+    <List fixed={fixed}>
+      {
+      loading
+        ? [1, 2, 3, 4].map(item => <Item key={item}><CategorySkeleton /></Item>)
+        : categories.map(category =>
+          <Item key={category.id}>
+            <Category {...category} />
+          </Item>)
+}
     </List>)
 
   return (
