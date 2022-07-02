@@ -13,7 +13,7 @@ const App = () => {
     <><GlobalStyles /><Logo /><CategoryList />
       {detailId
         ? <PhotoCardWithQuery id={detailId} />
-        : <><PhotoCardList categoryId={1} /></>}
+        : <><PhotoCardList categoryId={3} /></>}
     </>
 
   )
