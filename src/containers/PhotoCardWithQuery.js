@@ -1,8 +1,9 @@
 import React from 'react'
 import { PhotoCard } from '../components/PhotoCard'
 import { gql, useQuery } from '@apollo/client'
+import PhotoCradSkeleton from '../components/PhotoCard/PhotoCardSkeleton '
 
-const query = gql`
+const GET_SINGLE_PHOTO = gql`
   query getSinglePhoto($id: ID!) {
     photo(id: $id) {
       id
@@ -16,7 +17,7 @@ const query = gql`
 `
 
 const PhotoCardWithQuery = ({ id }) => {
-  const { loading, error, data } = useQuery(query, {
+  const { loading, error, data } = useQuery(GET_SINGLE_PHOTO, {
     variables: {
       id
     }
@@ -25,7 +26,7 @@ const PhotoCardWithQuery = ({ id }) => {
     return <h2>Internal Server Error</h2>
   }
   if (loading) {
-    return <h2>Loading...</h2>
+    return <PhotoCradSkeleton />
   }
 
   return (
