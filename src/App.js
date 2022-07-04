@@ -4,6 +4,7 @@ import { Logo } from './components/Logo'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import Detail from './pages/Detail'
+import { NavBar } from './components/NavBar'
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
           <Route path='/pet/:categoryId' element={<Home />} />
           <Route path='/detail/:detailId' element={<Detail />} />
         </Routes>
+        <NavBar />
       </BrowserRouter>
     </>
 
