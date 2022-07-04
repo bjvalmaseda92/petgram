@@ -4,7 +4,8 @@ module.exports = {
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'app.bundle.js'
+    filename: 'app.bundle.js',
+    publicPath: '/'
   },
   module: {
     rules: [
@@ -17,5 +18,8 @@ module.exports = {
       }
     ]
   },
-  plugins: [new HTMLWebpackPlugin({ template: './public/index.html' })]
+  plugins: [new HTMLWebpackPlugin({ template: './public/index.html' })],
+  devServer: {
+    historyApiFallback: true
+  }
 }

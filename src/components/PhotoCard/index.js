@@ -10,7 +10,7 @@ const PhotoCard = ({ id, likes = 0, src = DEFAULT_IMAGE }) => {
   const key = `like-${id}`
   const [show, element] = useNearScreen()
   const [like, setLike] = useLocalStorage(key, false)
-  const [mutateLikes, { data, loading, error }] = useToggleLike()
+  const [mutateLikes] = useToggleLike()
 
   const handleLike = () => {
     setLike(!like)
