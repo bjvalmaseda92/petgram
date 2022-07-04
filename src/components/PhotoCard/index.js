@@ -4,6 +4,7 @@ import { MdFavoriteBorder, MdFavorite } from 'react-icons/md'
 import { useLocalStorage } from '../../hooks/useLocalStorage'
 import { useNearScreen } from '../../hooks/useNearScreen'
 import { useToggleLike } from '../../hooks/useToggleLike'
+import { Link } from 'react-router-dom'
 
 const DEFAULT_IMAGE = 'https://res.cloudinary.com/midudev/image/upload/w_150/v1555671700/category_dogs.jpg'
 const PhotoCard = ({ id, likes = 0, src = DEFAULT_IMAGE }) => {
@@ -23,11 +24,11 @@ const PhotoCard = ({ id, likes = 0, src = DEFAULT_IMAGE }) => {
       {
         show &&
           <>
-            <a href={`?detail=${id}`}>
+            <Link to={`/detail/${id}`}>
               <ImgWrapper>
                 <Img src={src} />
               </ImgWrapper>
-            </a>
+            </Link>
 
             <Button onClick={handleLike}>
               <Icon size='32px' /> {likes} likes!
