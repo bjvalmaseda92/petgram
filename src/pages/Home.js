@@ -8,7 +8,7 @@ const Home = ({ id }) => {
   return (
     <>
       <CategoryList />
-      <PhotoCardList categoryId={params.id} />
+      <PhotoCardList categoryId={params.categoryId} />
     </>
   )
 }
