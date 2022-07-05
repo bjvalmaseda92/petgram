@@ -13,14 +13,20 @@ const NoRegisterUser = () => {
     const input = { email, password }
     const variables = { input }
     registerMutation({ variables })
-      .then(activateAuth)
+      .then(({ data }) => {
+        const { singup } = data
+        activateAuth(singup)
+      })
   }
 
   const handleLogin = ({ email, password }) => {
     const input = { email, password }
     const variables = { input }
     login({ variables })
-      .then(activateAuth)
+      .then(({ data }) => {
+        const { login } = data
+        activateAuth(login)
+      })
   }
   const errorMsg = error && 'El usuario ya existe o hay algún problema.'
   const errorLoginMsg = errorLogin && 'El usuario ya existe o hay algún problema.'
