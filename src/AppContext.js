@@ -8,7 +8,11 @@ const AppProvider = ({ children }) => {
     isAuth,
     activateAuth: token => {
       window.sessionStorage.setItem('token', token)
-      setIsAuth(token)
+      setIsAuth(true)
+    },
+    desactivateAuth: () => {
+      setIsAuth(false)
+      window.sessionStorage.removeItem('token')
     }
   }
 
