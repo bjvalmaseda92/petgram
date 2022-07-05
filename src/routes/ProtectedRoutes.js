@@ -1,7 +1,9 @@
-import React from 'react'
-import { NoRegisterUser } from '../pages/NoRegisrerUser'
+import React, { useContext } from 'react'
+import { AppContext } from '../AppContext'
+import { NoRegisterUser } from '../pages/NoRegisterUser'
 
-const ProtectedRoutes = ({ isAuth = true, children }) => {
+const ProtectedRoutes = ({ children }) => {
+  const { isAuth } = useContext(AppContext)
   if (!isAuth) {
     return (<NoRegisterUser />)
   }
