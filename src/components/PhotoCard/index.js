@@ -1,24 +1,20 @@
 import React from 'react'
 import { ImgWrapper, Img, Button, Article } from './style'
 import { MdFavoriteBorder, MdFavorite } from 'react-icons/md'
-import { useLocalStorage } from '../../hooks/useLocalStorage'
 import { useNearScreen } from '../../hooks/useNearScreen'
 import { useToggleLike } from '../../hooks/useToggleLike'
 import { Link } from 'react-router-dom'
 
 const DEFAULT_IMAGE = 'https://res.cloudinary.com/midudev/image/upload/w_150/v1555671700/category_dogs.jpg'
-const PhotoCard = ({ id, likes = 0, src = DEFAULT_IMAGE }) => {
-  const key = `like-${id}`
+const PhotoCard = ({ id, likes = 0, liked, src = DEFAULT_IMAGE }) => {
   const [show, element] = useNearScreen()
-  const [like, setLike] = useLocalStorage(key, false)
   const [mutateLikes] = useToggleLike()
 
   const handleLike = () => {
-    setLike(!like)
-    !like && mutateLikes({ variables: { input: { id } } })
+    mutateLikes({ variables: { input: { id } } })
   }
 
-  const Icon = like ? MdFavorite : MdFavoriteBorder
+  const Icon = liked ? MdFavorite : MdFavoriteBorder
   return (
     <Article ref={element}>
       {
