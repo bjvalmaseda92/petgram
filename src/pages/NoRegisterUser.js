@@ -1,16 +1,15 @@
 import React, { useContext } from 'react'
 import { AppContext } from '../AppContext'
+import { UserForm } from '../components/UserForm'
 
 const NoRegisterUser = () => {
   const { activateAuth } = useContext(AppContext)
   return (
-    <form onSubmit={(e) => {
-      e.preventDefault()
-      activateAuth()
-    }}
-    >
-      <button>Iniciar sesión</button>
-    </form>
+    <>
+      <UserForm onSubmit={activateAuth} title='Registrarse' />
+      <UserForm onSubmit={activateAuth} title='Iniciar sesion' />
+    </>
+
   )
 }
 
